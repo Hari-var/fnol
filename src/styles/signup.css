@@ -1,0 +1,157 @@
+/* Background */
+
+.signup-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #6ffce0 0%, #08affc 100%);
+  height: auto;
+  width: 100%;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.signup-form-container img {
+  max-width: 120px;
+  display: block;          /* makes it behave like a block element */
+  margin: 0 auto 10px;
+}
+.signup-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* logo left, heading middle */
+  margin-bottom: 20px;
+  position: relative;
+}
+
+/* Logo smaller and fixed left */
+.signup-meta img {
+  max-width: 120px;
+  height: auto;
+  margin: 0;
+}
+
+/* Center the heading */
+.signup-meta .form-title {
+  position: absolute;   /* keeps it centered relative to parent */
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+}
+
+.name-block{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 20px;
+    width: 100%;
+    align-items: center;
+}
+/* Card */
+.signup-card {
+    margin:100px;
+  background: #fff;
+  padding: 30px 40px;
+  border-radius: 16px;
+  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.15);
+  width: 800px;
+}
+
+.form-title {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #2b3a4a;
+}
+
+/* Form groups */
+.form-group {
+  margin-bottom: 18px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Input fields */
+input,
+textarea,
+.date-picker {
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  transition: border 0.3s;
+}
+
+input:focus,
+textarea:focus,
+.date-picker:focus {
+  border-color: #08affc;
+  box-shadow: 0 0 5px rgba(8, 175, 252, 0.3);
+}
+
+/* Address */
+.address-box {
+  resize: none;
+}
+
+/* ✅ Calendar (Date Picker) Styling */
+.date-picker {
+  appearance: none; /* Removes default browser style */
+  background-color: #f9f9f9;
+  cursor: pointer;
+  position: relative;
+}
+
+/* Calendar icon (custom) */
+.date-picker::-webkit-calendar-picker-indicator {
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='22' height='22' fill='%2308affc' viewBox='0 0 24 24'><path d='M19 4h-1V2h-2v2H8V2H6v2H5C3.897 4 3 4.897 3 6v14c0 1.103.897 2 2 2h14c1.104 0 2-.897 2-2V6c0-1.103-.896-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z'/></svg>")
+    no-repeat center;
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  border-radius: 4px;
+  opacity: 0.8;
+}
+
+.date-picker::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}
+
+/* Availability messages */
+.availability {
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+.availability.success {
+  color: green;
+}
+
+.availability.error {
+  color: red;
+}
+
+/* Submit Button */
+.submit-btn {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(90deg, #2575fc, #6a11cb);
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.submit-btn:hover {
+  background: linear-gradient(135deg, #0593d4, #52e2c9);
+}

@@ -1,0 +1,171 @@
+.policy-details-container {
+    max-width: 900px;
+      margin: 80px auto 20px auto;
+    background: #f7fbff;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    padding: 32px 24px;
+    font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+}
+
+.policy-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.policy-header img {
+    width: 100px;
+  height: auto;
+    object-fit: contain;
+}
+
+.policy-header h2 {
+    position: absolute;
+    font-size: 2rem;
+    left: 50%;
+    color: #0c3ed4;
+    transform: translateX(-50%);
+    margin: 0;
+}
+
+
+.policy-body h3 {
+    margin-top: 0;
+    color: #2b3a4a;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.policy-holder-details {
+    display: flex;
+    gap: 32px;
+    margin-bottom: 24px;
+}
+
+.policy-holder-col {
+    flex: 1;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    padding: 18px 16px;
+    min-width: 0;
+}
+
+.policy-holder-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.policy-holder-col li {
+    margin-bottom: 12px;
+    font-size: 1rem;
+}
+
+.policy-holder-col strong {
+    color: #0c3ed4;
+    font-weight: 500;
+}
+
+.policy-section {
+    margin-top: 32px;
+}
+
+.claim-card table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    font-size: 15px;
+    margin-top: 12px;
+}
+
+.claim-card th, .claim-card td {
+    padding: 10px 8px;
+    text-align: left;
+    border-bottom: 2px solid #e3f3fa;
+}
+
+.claim-card th {
+    background: #e3f3fa;
+    font-weight: 600;
+    color: #2b3a4a;
+}
+
+.claim-card tr.claim-card:hover {
+    background: #d6f0ff;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.vehicle-card table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    font-size: 15px;
+    margin-top: 12px;
+}
+
+.vehicle-card th, .vehicle-card td {
+    padding: 10px 8px;
+    text-align: left;
+    border-bottom: 2px solid #e3f3fa;
+}
+
+.vehicle-card th {
+    background: #e3f3fa;
+    font-weight: 600;
+    color: #2b3a4a;
+}
+
+.vehicle-card tr.vehicle-card:hover {
+    background: #d6f0ff;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.policy-error {
+    background: #ffeaea;
+    color: #d32f2f;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+button {
+    background: #0c3ed4;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 18px;
+    font-size: 1rem;
+    margin-top: 24px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+button:hover {
+    background: #094bb7;
+}
+
+@media (max-width: 700px) {
+    .policy-details-container {
+        padding: 12px 4px;
+    }
+    .policy-holder-details {
+        flex-direction: column;
+        gap: 12px;
+    }
+    .policy-header h2 {
+        font-size: 1.3rem;
+    }
+    .claim-card table {
+        font-size: 13px;
+    }
+}

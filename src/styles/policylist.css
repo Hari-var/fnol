@@ -1,0 +1,119 @@
+.search-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    /* padding: 15px; */
+    margin: 25px 10px;
+    width: 97%;
+    font-size: 16px;
+    border-radius: 100px;
+  border: 1px solid #ccc;
+}
+
+.policy-list-container{
+    position: fixed;
+    top: 80px;            /* just below the header */
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow-y: auto;      /* enable vertical scrolling */
+    /* padding: 16px; */
+    
+}
+.policy-list-container p{
+    position:relative;
+    
+}
+
+.policy-list {
+    display: flex;
+
+    flex-direction: column; /* Stack cards vertically */
+    gap: 8px;
+    align-items: stretch;   /* Make cards fill the container width */
+    margin-top: 80px;
+    /* position: left; */
+}
+
+.pagination{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    /* padding: 0px 0px 30px 20px ; */
+    /* margin: 0; */
+}
+
+.pagination button{
+    border-radius: 40%;
+    padding: 8px 12px;
+    background-color: #0c3ed4;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.pagination button:hover {
+    background-color: rgb(226, 97, 41);
+}
+
+.no-policy-message {
+  text-align: center;
+  font-size: 16px;
+  color: #555;
+  margin: 6px 0;
+  font-weight: 500;
+}
+
+.policy-table-wrapper {
+  width: 90%;                /* Slightly reduced width */
+  margin: 90px auto 0 auto;  /* Center horizontally */
+  overflow-x: auto;
+  font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif; /* Professional font */
+}
+
+.policy-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #f7fbff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  font-size: 15px;
+  min-width: 600px;
+  font-family: inherit;      /* Inherit professional font */
+}
+
+.policy-table th, .policy-table td {
+  padding: 12px 10px;
+  text-align: left;
+  border-bottom: 2px solid #e3f3fa; /* Underline separation */
+}
+
+.policy-table th {
+  background: #e3f3fa;
+  font-weight: 600;
+  color: #2b3a4a;
+  border-bottom: 3px solid #b3d6f5; /* Slightly stronger underline for header */
+}
+
+.policy-row:hover {
+  background: #d6f0ff;
+  transition: background 0.2s;
+}
+
+.policy-row:focus {
+  outline: 2px solid #0c3ed4;
+}
+
+@media (max-width: 700px) {
+  .policy-table-wrapper {
+    width: 99%;
+    margin-top: 60px;
+  }
+  .policy-table {
+    font-size: 13px;
+    min-width: 0;
+  }
+}
