@@ -22,7 +22,7 @@ export default function Users() {
   const fetchUsers = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('https://81a531d55958.ngrok-free.app/users/user_details', {
+      const response = await axios.get('https://90175f0f47e6.ngrok-free.app/users/user_details', {
         withCredentials: true
       });
       setUsers(response.data);
@@ -66,7 +66,7 @@ export default function Users() {
   const handleUpdateRole = async () => {
     try {
       await axios.put(
-        `https://81a531d55958.ngrok-free.app/users/update_user_admin?user_id=${editingUser.user_id}`,
+        `https://90175f0f47e6.ngrok-free.app/users/update_user_admin?user_id=${editingUser.user_id}`,
         { 
           usertype: newUserType,
           status: newUserStatus
@@ -96,7 +96,7 @@ export default function Users() {
     const newStatus = user.status === 'active' ? 'inactive' : 'active';
     try {
       await axios.put(
-        `https://81a531d55958.ngrok-free.app/users/update_user_admin?user_id=${user.user_id}`,
+        `https://90175f0f47e6.ngrok-free.app/users/update_user_admin?user_id=${user.user_id}`,
         { 
           usertype: user.role || user.usertype || 'user',
           status: newStatus

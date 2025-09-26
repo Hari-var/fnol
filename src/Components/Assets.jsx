@@ -20,7 +20,7 @@ export default function Assets() {
   const fetchAssets = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('https://81a531d55958.ngrok-free.app/insurables/assets', {
+      const response = await axios.get('https://90175f0f47e6.ngrok-free.app/insurables/assets', {
         withCredentials: true
       });
       if (response.data.detail != null) {

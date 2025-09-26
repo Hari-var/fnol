@@ -9,7 +9,7 @@ export default function Header({ login, user, username, handleLogout }) {
 
   useEffect(() => {
     if (login && username && user && user.user_id) {
-      fetch(`https://81a531d55958.ngrok-free.app/users/user_details/${user.user_id}`, {
+      fetch(`https://90175f0f47e6.ngrok-free.app/users/user_details/${user.user_id}`, {
         method: 'GET',
         credentials: 'include'
       })
@@ -18,7 +18,7 @@ export default function Header({ login, user, username, handleLogout }) {
           console.log('Profile pic filename:', data.profile_pic);
           setUserData(data);
           if (data.profile_pic) {
-            setProfilePic(`https://81a531d55958.ngrok-free.app/users/get_profile_pic/${data.user_id}`);
+            setProfilePic(`https://90175f0f47e6.ngrok-free.app/users/get_profile_pic/${data.user_id}`);
           } else {
             setProfilePic(null);
           }

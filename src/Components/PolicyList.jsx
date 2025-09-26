@@ -19,7 +19,7 @@ export default function PolicyList() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("https://81a531d55958.ngrok-free.app/policies/policy_details_all", {
+    fetch("https://90175f0f47e6.ngrok-free.app/policies/policy_details_all", {
       method: "GET",
       credentials: "include",
     })

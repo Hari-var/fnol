@@ -77,7 +77,7 @@ export default function VehiclePolicyForm({user}) {
       username = base + randomNum;
       
       try {
-        const response = await fetch(`https://81a531d55958.ngrok-free.app/users/check_username/${username}`);
+        const response = await fetch(`https://90175f0f47e6.ngrok-free.app/users/check_username/${username}`);
         const data = await response.json();
         isAvailable = !data.exists;
         attempts++;
@@ -135,7 +135,7 @@ export default function VehiclePolicyForm({user}) {
 
   const fetchUserNames = async () => {
     try {
-      const response = await axios.get('https://81a531d55958.ngrok-free.app/users/user_names', {
+      const response = await axios.get('https://90175f0f47e6.ngrok-free.app/users/user_names', {
         withCredentials: true
       });
       setUserNames(response.data);
@@ -146,7 +146,7 @@ export default function VehiclePolicyForm({user}) {
 
   const fetchUserDetails = async (userId) => {
     try {
-      const response = await axios.get(`https://81a531d55958.ngrok-free.app/users/user_details/${userId}`, {
+      const response = await axios.get(`https://90175f0f47e6.ngrok-free.app/users/user_details/${userId}`, {
         withCredentials: true
       });
       const userData = response.data;
@@ -192,7 +192,7 @@ export default function VehiclePolicyForm({user}) {
       return;
     }
     try {
-      const res = await fetch(`https://81a531d55958.ngrok-free.app/users/check_email/${email}`);
+      const res = await fetch(`https://90175f0f47e6.ngrok-free.app/users/check_email/${email}`);
       const data = await res.json();
       setEmailAvailability(data.exists ? "❌ Email already exists" : "✅ Email available");
     } catch (error) {
@@ -242,7 +242,7 @@ export default function VehiclePolicyForm({user}) {
         address: null
       };
       
-      const response = await fetch('https://81a531d55958.ngrok-free.app/users/input_user_details', {
+      const response = await fetch('https://90175f0f47e6.ngrok-free.app/users/input_user_details', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
@@ -253,7 +253,7 @@ export default function VehiclePolicyForm({user}) {
       
       if (response.ok) {
         // Send acknowledgment email
-        await axios.post('https://81a531d55958.ngrok-free.app/users/acknowledgement', {
+        await axios.post('https://90175f0f47e6.ngrok-free.app/users/acknowledgement', {
           username: newUserData.username,
           password: autoPassword,
           email: newUserData.email
@@ -320,7 +320,7 @@ export default function VehiclePolicyForm({user}) {
       formData_llm.append('right_img', images.right);
 
 
-      const response = await fetch(`https://81a531d55958.ngrok-free.app/llm/extract_vehicle_details?make=${formData.make}&model=${formData.model}&type=${formData.vehicle_type}&year=${formData.year_of_purchase}`, {
+      const response = await fetch(`https://90175f0f47e6.ngrok-free.app/llm/extract_vehicle_details?make=${formData.make}&model=${formData.model}&type=${formData.vehicle_type}&year=${formData.year_of_purchase}`, {
         method: 'POST',
         credentials: 'include',
         body: formData_llm
@@ -378,7 +378,7 @@ export default function VehiclePolicyForm({user}) {
       }
 
       // 1. Create Policy first
-      const policyRes = await fetch("https://81a531d55958.ngrok-free.app/policies/policy_details", {
+      const policyRes = await fetch("https://90175f0f47e6.ngrok-free.app/policies/policy_details", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -397,7 +397,7 @@ export default function VehiclePolicyForm({user}) {
       imgForm.append("left_img", images.left);
       imgForm.append("right_img", images.right);
 
-      const imgRes = await fetch(`https://81a531d55958.ngrok-free.app/vehicles/upload_vehicle_images?folder_name=${formData.vin}&typeofvehicle=${formData.vehicle_type}`, {
+      const imgRes = await fetch(`https://90175f0f47e6.ngrok-free.app/vehicles/upload_vehicle_images?folder_name=${formData.vin}&typeofvehicle=${formData.vehicle_type}`, {
         method: "POST",
         credentials: "include",
         body: imgForm,
@@ -426,7 +426,7 @@ export default function VehiclePolicyForm({user}) {
       }
 
       // 3. Create Vehicle
-      const vehicleRes = await fetch("https://81a531d55958.ngrok-free.app/vehicles/vehicle_details", {
+      const vehicleRes = await fetch("https://90175f0f47e6.ngrok-free.app/vehicles/vehicle_details", {
         method: "POST",
         credentials: "include",
         body: JSON.stringify(vehicle_payload),

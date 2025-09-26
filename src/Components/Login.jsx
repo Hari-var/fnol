@@ -23,7 +23,7 @@ const Login = ({ setLogin }) => {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
 
-    fetch(`https://81a531d55958.ngrok-free.app/auth/token?remember=${remember}`, {
+    fetch(`https://90175f0f47e6.ngrok-free.app/auth/token?remember=${remember}`, {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams({

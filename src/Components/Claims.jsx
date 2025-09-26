@@ -17,7 +17,7 @@ export default function Claims() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("https://81a531d55958.ngrok-free.app/claims/claim_details", {
+    fetch("https://90175f0f47e6.ngrok-free.app/claims/claim_details", {
       method: "GET",
       credentials: "include",
     })

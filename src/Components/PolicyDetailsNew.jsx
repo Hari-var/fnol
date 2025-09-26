@@ -14,7 +14,7 @@ export default function PolicyDetailsNew() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch(`https://81a531d55958.ngrok-free.app/policies/policy_details?policy_id=${policyId}`, {
+    fetch(`https://90175f0f47e6.ngrok-free.app/policies/policy_details?policy_id=${policyId}`, {
       method: "GET",
       credentials: "include",
     })

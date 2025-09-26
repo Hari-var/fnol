@@ -48,7 +48,7 @@ export default function ClaimsForm({user}) {
 
   const fetchUserNames = async () => {
     try {
-      const response = await fetch('https://81a531d55958.ngrok-free.app/users/user_names', {
+      const response = await fetch('https://90175f0f47e6.ngrok-free.app/users/user_names', {
         credentials: 'include'
       });
       const data = await response.json();
@@ -60,7 +60,7 @@ export default function ClaimsForm({user}) {
 
   const fetchPolicies = async (userId) => {
     try {
-      const response = await fetch(`https://81a531d55958.ngrok-free.app/policies/policy_numbers/${userId || 0}`, {
+      const response = await fetch(`https://90175f0f47e6.ngrok-free.app/policies/policy_numbers/${userId || 0}`, {
         credentials: 'include'
       });
       const data = await response.json();
@@ -72,7 +72,7 @@ export default function ClaimsForm({user}) {
 
   const fetchPolicyDetails = async (policyId) => {
     try {
-      const response = await fetch(`https://81a531d55958.ngrok-free.app/policies/policy_details/${policyId}`, {
+      const response = await fetch(`https://90175f0f47e6.ngrok-free.app/policies/policy_details/${policyId}`, {
         credentials: 'include'
       });
       const data = await response.json();
@@ -90,7 +90,7 @@ export default function ClaimsForm({user}) {
 
   const fetchInsuredAssets = async (policyId) => {
     try {
-      const response = await fetch(`https://81a531d55958.ngrok-free.app/insurables/get_id?policy_id=${policyId}`, {
+      const response = await fetch(`https://90175f0f47e6.ngrok-free.app/insurables/get_id?policy_id=${policyId}`, {
         credentials: 'include'
       });
       const data = await response.json();
@@ -171,7 +171,7 @@ export default function ClaimsForm({user}) {
         formDataLLM.append('images', image);
       });
 
-      const response = await fetch(`https://81a531d55958.ngrok-free.app/llm/claim_validation?damage_description=${encodeURIComponent(formData.damage_description_user)}&requested_amount=${formData.requested_amount}&claimable_amount=${selectedPolicy.coverage_amount}`, {
+      const response = await fetch(`https://90175f0f47e6.ngrok-free.app/llm/claim_validation?damage_description=${encodeURIComponent(formData.damage_description_user)}&requested_amount=${formData.requested_amount}&claimable_amount=${selectedPolicy.coverage_amount}`, {
         method: 'POST',
         credentials: 'include',
         body: formDataLLM
@@ -214,7 +214,7 @@ export default function ClaimsForm({user}) {
       const formData = new FormData();
       files.forEach(file => formData.append('documents', file));
 
-      const response = await fetch(`https://81a531d55958.ngrok-free.app/claims/upload_documents?folder_name=${folderName}`, {
+      const response = await fetch(`https://90175f0f47e6.ngrok-free.app/claims/upload_documents?folder_name=${folderName}`, {
         method: 'POST',
         body: formData,
         credentials: 'include'
@@ -246,7 +246,7 @@ export default function ClaimsForm({user}) {
           imageFormData.append('images', image);
         });
         
-        const imageResponse = await fetch(`https://81a531d55958.ngrok-free.app/claims/upload_claim_images?folder_name=${folderName}`, {
+        const imageResponse = await fetch(`https://90175f0f47e6.ngrok-free.app/claims/upload_claim_images?folder_name=${folderName}`, {
           method: 'POST',
           body: imageFormData,
           credentials: 'include'
@@ -285,7 +285,7 @@ export default function ClaimsForm({user}) {
         claim_status: "in-review"
       };
 
-      const response = await fetch('https://81a531d55958.ngrok-free.app/claims/claim_details', {
+      const response = await fetch('https://90175f0f47e6.ngrok-free.app/claims/claim_details', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',

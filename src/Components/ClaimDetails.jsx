@@ -17,7 +17,7 @@ export default function ClaimDetails() {
 
   useEffect(() => {
     // Fetch current user
-    fetch(`https://81a531d55958.ngrok-free.app/auth/me`, {
+    fetch(`https://90175f0f47e6.ngrok-free.app/auth/me`, {
       credentials: 'include'
     })
       .then(response => response.json())
@@ -25,7 +25,7 @@ export default function ClaimDetails() {
       .catch(err => console.error('Failed to fetch user:', err));
 
     // Fetch claim details
-    fetch(`https://81a531d55958.ngrok-free.app/claims/claim_details/${claimId}`, {
+    fetch(`https://90175f0f47e6.ngrok-free.app/claims/claim_details/${claimId}`, {
       method: "GET",
       credentials: "include",
     })
@@ -88,12 +88,12 @@ export default function ClaimDetails() {
   }
 
   const handleViewImage = (imagePath) => {
-    setPopupContent({ type: 'image', url: `https://81a531d55958.ngrok-free.app/claims/files?path=${encodeURIComponent(imagePath)}`, title: 'Damage Image' });
+    setPopupContent({ type: 'image', url: `https://90175f0f47e6.ngrok-free.app/claims/files?path=${encodeURIComponent(imagePath)}`, title: 'Damage Image' });
     setShowPopup(true);
   };
 
   const handleViewDocument = (docPath) => {
-    setPopupContent({ type: 'document', url: `https://81a531d55958.ngrok-free.app/claims/files?path=${encodeURIComponent(docPath)}`, title: 'Document' });
+    setPopupContent({ type: 'document', url: `https://90175f0f47e6.ngrok-free.app/claims/files?path=${encodeURIComponent(docPath)}`, title: 'Document' });
     setShowPopup(true);
   };
 
@@ -155,7 +155,7 @@ export default function ClaimDetails() {
 
   const handleApprove = async () => {
     try {
-      const response = await fetch(`https://81a531d55958.ngrok-free.appclaims/claim_details/${claimId}`, {
+      const response = await fetch(`https://90175f0f47e6.ngrok-free.appclaims/claim_details/${claimId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
@@ -172,7 +172,7 @@ export default function ClaimDetails() {
 
   const handleReject = async () => {
     try {
-      const response = await fetch(`https://81a531d55958.ngrok-free.appclaims/claim_details/${claimId}`, {
+      const response = await fetch(`https://90175f0f47e6.ngrok-free.appclaims/claim_details/${claimId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
@@ -194,7 +194,7 @@ export default function ClaimDetails() {
         approvable_reason: editData.approvable_reason,
         remarks: editData.remarks
       };
-      const response = await fetch(`https://81a531d55958.ngrok-free.appclaims/claim_details/${claimId}`, {
+      const response = await fetch(`https://90175f0f47e6.ngrok-free.appclaims/claim_details/${claimId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
@@ -370,7 +370,7 @@ export default function ClaimDetails() {
                 <div key={index} className="image-card">
                   <div className="image-preview">
                     <img 
-                      src={`https://81a531d55958.ngrok-free.appclaims/files?path=${encodeURIComponent(imagePath)}`}
+                      src={`https://90175f0f47e6.ngrok-free.appclaims/files?path=${encodeURIComponent(imagePath)}`}
                       alt={`Damage ${index + 1}`}
                       className="damage-image-thumb"
                       onClick={() => handleViewImage(imagePath)}

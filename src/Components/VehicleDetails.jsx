@@ -11,7 +11,7 @@ export default function VehicleDetails() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch(`https://81a531d55958.ngrok-free.app/vehicles/vehicle_details/${vehicleId}`, {
+    fetch(`https://90175f0f47e6.ngrok-free.app/vehicles/vehicle_details/${vehicleId}`, {
       method: "GET",
       credentials: "include",
     })
@@ -118,7 +118,7 @@ export default function VehicleDetails() {
               <div key={side} className="image-card">
                 <h4>{side.charAt(0).toUpperCase() + side.slice(1)} View</h4>
                 <img
-                  src={`https://81a531d55958.ngrok-free.app/vehicles/get_vehicle_image/${vehicle.id}/${side}`}
+                  src={`https://90175f0f47e6.ngrok-free.app/vehicles/get_vehicle_image/${vehicle.id}/${side}`}
                   alt={`${side} view`}
                   className="vehicle-image"
                   onError={(e) => {
