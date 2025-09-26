@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { FaArrowLeft, FaFileAlt, FaCalendarAlt, FaMapMarkerAlt, FaRupeeSign, FaExclamationTriangle, FaRobot, FaUser, FaImage, FaDownload, FaTimes, FaEdit, FaCheck, FaBan, FaSave } from "react-icons/fa";
-import { root_path } from "../helpers/config";
 import "../styles/claimdetails.css";
 
 export default function ClaimDetails() {
