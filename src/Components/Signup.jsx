@@ -13,10 +13,14 @@ function SignUp() {
     email: "",
     phone: "",
     dob: "",
+    profile_pic:"",
     address: "",
     password: "",
     confirmPassword: "",
   });
+  const [profilePicFile, setProfilePicFile] = useState(null);
+  const [previewUrl, setPreviewUrl] = useState(null);
+  const [isDragging, setIsDragging] = useState(false);
 
   const [usernameAvailability, setUsernameAvailability] = useState(null);
   const [emailAvailability, setEmailAvailability] = useState(null);
@@ -33,24 +37,45 @@ function SignUp() {
     setLoading(true);
     setError(null);
 
-    // build data to send
-    const payload = {
-      username: formData.username,
-      firstname: formData.firstName,
-      middlename: formData.middleName,
-      lastname: formData.lastName,
-      email: formData.email,
-      phone: formData.phone,
-      dateofbirth: formData.dob,
-      address: formData.address,
-      password: formData.password,
-    };
-
     try {
-      const response = await fetch("http://localhost:8000/users/input_user_details", {
+      let profilePicPath = null;
+      
+      // Upload profile picture first if provided
+      if (profilePicFile) {
+        const picFormData = new FormData();
+        picFormData.append('file', profilePicFile);
+        
+        const picResponse = await fetch("https://81a531d55958.ngrok-free.app/users/upload_pic", {
+          method: "POST",
+          body: picFormData,
+        });
+        
+        if (picResponse.ok) {
+          const picData = await picResponse.json();
+          profilePicPath = picData.file_name;
+          console.log('Uploaded profile picture path:', profilePicPath);
+        }
+      }
+
+      // Create user with profile pic path
+      const payload = {
+        username: formData.username,
+        firstname: formData.firstName,
+        middlename: formData.middleName,
+        lastname: formData.lastName,
+        email: formData.email,
+        phone: formData.phone,
+        dateofbirth: formData.dob,
+        address: formData.address,
+        password: formData.password,
+        profile_pic: profilePicPath,
+        status: 'active'
+      };
+
+      const response = await fetch("https://81a531d55958.ngrok-free.app/users/input_user_details", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        credentials: "include", // to store cookies
+        credentials: "include",
         body: JSON.stringify(payload),
       });
 
@@ -78,7 +103,7 @@ function SignUp() {
       return;
     }
     try {
-      const res = await fetch(`http://localhost:8000/users/check_username/${username}`);
+      const res = await fetch(`https://81a531d55958.ngrok-free.app/users/check_username/${username}`);
       const data = await res.json();
       setUsernameAvailability(data.exists ? "❌ Username already taken" : "✅ Username available");
     } catch (error) {
@@ -93,7 +118,7 @@ function SignUp() {
       return;
     }
     try {
-      const res = await fetch(`http://localhost:8000/users/check_email/${email}`);
+      const res = await fetch(`https://81a531d55958.ngrok-free.app/users/check_email/${email}`);
       const data = await res.json();
       setEmailAvailability(data.exists ? "❌ Email already exists" : "✅ Email available");
     } catch (error) {
@@ -108,7 +133,7 @@ function SignUp() {
       return;
     }
     try {
-      const res = await fetch(`http://localhost:8000/users/check_phone/${phone}`);
+      const res = await fetch(`https://81a531d55958.ngrok-free.app/users/check_phone/${phone}`);
       const data = await res.json();
       setPhoneAvailability(data.exists ? "❌ Phone already exists" : "✅ Phone available");
     } catch (error) {
@@ -138,6 +163,37 @@ function SignUp() {
     if (name === "confirmPassword") {
       setPasswordMatch(value === formData.password ? "✅ Passwords match" : "❌ Passwords do not match");
     }
+  };
+
+  // Handle profile picture upload
+  const handleProfilePicChange = (e) => {
+    const file = e.target.files[0];
+    handleFileSelect(file);
+  };
+
+  const handleFileSelect = (file) => {
+    if (file && file.type.startsWith('image/')) {
+      setProfilePicFile(file);
+      const url = URL.createObjectURL(file);
+      setPreviewUrl(url);
+    }
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    setIsDragging(true);
+  };
+
+  const handleDragLeave = (e) => {
+    e.preventDefault();
+    setIsDragging(false);
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    setIsDragging(false);
+    const file = e.dataTransfer.files[0];
+    handleFileSelect(file);
   };
 
 
@@ -170,7 +226,7 @@ function SignUp() {
             <label htmlFor="username">Username</label>
             <input type="text" id="username" name="username" value={formData.username} onChange={handleChange} required placeholder="Enter username" />
             {usernameAvailability && (
-    <p className={`availability ${usernameAvailability.includes("❌") ? "error" : "success"}`}>
+    <p className={`availability ${usernameAvailability.includes("❌") ? "error1" : "success"}`}>
       {usernameAvailability}
     </p>
     )}
@@ -197,7 +253,7 @@ function SignUp() {
             <label htmlFor="email">Email</label>
             <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required placeholder="Enter email" />
             {emailAvailability && (
-    <p className={`availability ${emailAvailability.includes("❌") ? "error" : "success"}`}>
+    <p className={`availability ${emailAvailability.includes("❌") ? "error1" : "success"}`}>
       {emailAvailability}
     </p>
   )}
@@ -209,7 +265,7 @@ function SignUp() {
             <label htmlFor="phone">Phone</label>
             <input type="tel" id="phone" name="phone" value={formData.phone} onChange={handleChange} required placeholder="Enter phone number" />
              {phoneAvailability && (
-            <p className={`availability ${phoneAvailability.includes("❌") ? "error" : "success"}`}>
+            <p className={`availability ${phoneAvailability.includes("❌") ? "error1" : "success"}`}>
               {phoneAvailability}
             </p>
           )}
@@ -227,12 +283,44 @@ function SignUp() {
             <textarea id="address" name="address" value={formData.address} onChange={handleChange} rows="3" className="address-box" placeholder="Enter address" />
           </div>
 
+          {/* Profile Picture */}
+          <div className="form-group">
+            <label htmlFor="profilePic">Profile Picture (Optional)</label>
+            <div 
+              className={`file-drop-zone ${isDragging ? 'dragging' : ''}`}
+              onDragOver={handleDragOver}
+              onDragLeave={handleDragLeave}
+              onDrop={handleDrop}
+              onClick={() => document.getElementById('profilePic').click()}
+            >
+              {previewUrl ? (
+                <div className="preview-container">
+                  <img src={previewUrl} alt="Preview" className="preview-image" />
+                  <p className="file-name">{profilePicFile.name}</p>
+                </div>
+              ) : (
+                <div className="drop-text">
+                  <p>📷 Drag & drop your photo here or click to browse</p>
+                  <p className="drop-hint">Supports: JPG, PNG, GIF</p>
+                </div>
+              )}
+            </div>
+            <input 
+              type="file" 
+              id="profilePic" 
+              name="profilePic" 
+              accept="image/*" 
+              onChange={handleProfilePicChange}
+              className="file-input-hidden"
+            />
+          </div>
+
           {/* Password */}
           <div className="form-group">
             <label htmlFor="password">Password</label>
             <input type="password" id="password" name="password" value={formData.password} onChange={handlePasswordChange} required placeholder="Enter password" />
             {passwordStrength && (
-              <p className={`availability ${passwordStrength.includes("❌") ? "error" : "success"}`}>{passwordStrength}</p>
+              <p className={`availability ${passwordStrength.includes("❌") ? "error1" : "success"}`}>{passwordStrength}</p>
             )}
           </div>
 
@@ -241,7 +329,7 @@ function SignUp() {
             <label htmlFor="confirmPassword">Confirm Password</label>
             <input type="password" id="confirmPassword" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} required placeholder="Re-enter password" />
             {passwordMatch && (
-              <p className={`availability ${passwordMatch.includes("❌") ? "error" : "success"}`}>{passwordMatch}</p>
+              <p className={`availability ${passwordMatch.includes("❌") ? "error1" : "success"}`}>{passwordMatch}</p>
             )}
           </div>
 

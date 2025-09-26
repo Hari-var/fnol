@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { FaArrowLeft } from "react-icons/fa";
 import "../styles/policydetails.css";
 
 
@@ -13,7 +14,7 @@ export default function PolicyDetails() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:8000/policies/policy_details/${policyId}`, {
+    fetch(`https://81a531d55958.ngrok-free.app/policies/policy_details?policy_id=${policyId}`, {
       method: "GET",
       credentials: "include",
     })
@@ -29,16 +30,24 @@ export default function PolicyDetails() {
   }, [policyId]);
 
   if (loading) {
-    return <p>Loading policy details...</p>;
+    return (
+      <div className="policy-details-container">
+        <div className="loading-message">
+          <p>Loading policy details...</p>
+        </div>
+      </div>
+    );
   }
 
   if (error) {
     return (
-      <div className="body">
-      <div className="policy-error">
-        <p>{error}</p>
-        <button onClick={() => navigate(-1)}>Go Back</button>
-      </div>
+      <div className="policy-details-container">
+        <button className="back-arrow" onClick={() => navigate(-1)}>
+          <FaArrowLeft /> Back
+        </button>
+        <div className="error-message">
+          <p>{error}</p>
+        </div>
       </div>
     );
   }
@@ -49,6 +58,9 @@ export default function PolicyDetails() {
 
   return (
     <div className="policy-details-container">
+      <button className="back-arrow" onClick={() => navigate(-1)}>
+        <FaArrowLeft /> Back to Policies
+      </button>
   <div className="policy-form">
     <div className="policy-header">
       <img 
@@ -83,7 +95,7 @@ export default function PolicyDetails() {
           <ul>
             <li><strong>Policy Number:</strong> <span>{policy.policy_number}</span></li>
             <li><strong>Premium:</strong> <span>{policy.premium}</span></li>
-            <li><strong>Total Claimable Amount:</strong> <span>{policy.total_claimable_amount}</span></li>
+            <li><strong>Coverage Amount:</strong> <span>{policy.coverage_amount}</span></li>
             <li><strong>Period:</strong><span>From <i>{policy.start_date}</i> To <i>{policy.end_date}</i></span></li>
             <li><strong>Status:</strong> <span>{policy.status}</span></li>
           </ul>
@@ -110,7 +122,7 @@ export default function PolicyDetails() {
           
         ) : (
           <tr>
-            <td colSpan="2">No claims filed for this policy.</td>
+            <td colSpan="2">No insurable details filed for this policy.</td>
           </tr>
         )}
         </tbody>
@@ -153,7 +165,6 @@ export default function PolicyDetails() {
         </div>
       </div>
   </div>
-  <button onClick={() => navigate(-1)}>Back to Policies</button>
 </div>
 
   );

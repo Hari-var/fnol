@@ -20,27 +20,40 @@ const Login = ({ setLogin }) => {
     setLoading(true);
     setError(null);
 
-    fetch(`http://localhost:8000/auth/token?remember=${remember}`, {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+
+    fetch(`https://81a531d55958.ngrok-free.app/auth/token?remember=${remember}`, {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams({
         username: username,
         password: password,
       }),
-      credentials: "include", // store cookie in browser
+      credentials: "include",
+      signal: controller.signal,
     })
       .then((response) => response.json())
       .then((data) => {
+        clearTimeout(timeoutId);
         if (data.detail) {
           setError("⚠️ " + data.detail);
         } else {
-          // localStorage.setItem("token", data.access_token);
           setError(null);
+          localStorage.setItem("isLoggedIn", "true");
           setLogin(true);
-          navigate("/policies");
+          navigate("/", { replace: true });
         }
       })
-      .catch((err) => setError("Something went wrong. Please try again later."))
+      .catch((err) => {
+        clearTimeout(timeoutId);
+        if (err.name === 'AbortError') {
+          setError("Request timed out. Please check your connection and try again.");
+        } else {
+          setError("Something went wrong. Please try again later.");
+        }
+        setLoading(false);
+      })
       .finally(() => setLoading(false));
   };
 
@@ -57,10 +70,10 @@ const Login = ({ setLogin }) => {
         </div>
 
         {/* 🔹 Show Error */}
-        {error && <div className="error-message">{error}</div>}
+        {error && <div className="errormessage">{error}</div>}
 
         {/* 🔹 Show Loading */}
-        {loading && <div className="loading-message">Authenticating...</div>}
+        {loading && <div className="loadingmessage">Authenticating...</div>}
 
         <form onSubmit={handleSubmit}>
           <div className="input-group">

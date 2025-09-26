@@ -12,7 +12,10 @@ export default function PolicyRequestForm() {
                     <option value="home">Home</option>
                     <option value="health">Health</option>
                 </select>
-                
+                <label>Start Date:</label>
+                <input type="date" />
+                <label>End Date:</label>
+                <input type="date" />
             </form>
         </div>
     )

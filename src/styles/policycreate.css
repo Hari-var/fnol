@@ -1,0 +1,112 @@
+/* Container */
+.policy-create-container,
+.policy-form-container {
+  max-width: 600px;
+  margin: 40px auto;
+  background-color: #fff;
+  padding: 25px 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Heading */
+.policy-create-container h2,
+.policy-form-container h2 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #2b3a4a;
+  text-align: center;
+}
+
+/* Form row */
+.form-row {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.form-row label {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 5px;
+  color: #3a3a3a;
+}
+
+.form-row input,
+.form-row select {
+  padding: 8px 12px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  transition: all 0.2s;
+}
+
+.form-row input:focus,
+.form-row select:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+/* Buttons */
+.next-btn,
+button[type="submit"] {
+  width: 100%;
+  padding: 10px 0;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.2s;
+}
+
+.next-btn:hover,
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+/* Select box in Policy Create */
+.policy-type-select select {
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.policy-type-select select:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+  .policy-create-container,
+  .policy-form-container {
+    padding: 20px;
+    margin: 20px;
+  }
+
+  .policy-create-container h2,
+  .policy-form-container h2 {
+    font-size: 20px;
+  }
+
+  .form-row input,
+  .form-row select {
+    font-size: 13px;
+  }
+
+  .next-btn,
+  button[type="submit"] {
+    font-size: 14px;
+  }
+}
