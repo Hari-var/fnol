@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/login.css";
-
+import { path } from "../config";
 const Login = ({ setLogin }) => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -23,7 +23,7 @@ const Login = ({ setLogin }) => {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
 
-    fetch(`https://90175f0f47e6.ngrok-free.app/auth/token?remember=${remember}`, {
+    fetch(`${path}/auth/token?remember=${remember}`, {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams({

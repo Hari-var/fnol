@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import "./styles/styles.css";
+import {path} from "./config.js";
 
 
 import PolicyList from "./Components/PolicyList";
@@ -43,7 +44,7 @@ function App() {
 
   useEffect(() => {
     if (login) {
-      fetch("https://81a531d55958.ngrok-free.app/auth/me", {
+      fetch(`${path}/auth/me`, {
         method: "GET",
         credentials: "include",
       })
@@ -78,7 +79,7 @@ function App() {
     setLogin(false);
     localStorage.setItem("isLoggedIn", "false");
 
-    fetch("https://81a531d55958.ngrok-free.app/auth/logout", {
+    fetch(`${path}/auth/logout`, {
       method: "POST",
       credentials: "include",
     }).catch((err) => console.error("Logout failed:", err));

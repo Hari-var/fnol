@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FaUser, FaEnvelope, FaPhone, FaMapMarkerAlt, FaCalendarAlt, FaEdit, FaTimes, FaCamera, FaTrash } from 'react-icons/fa';
 import '../styles/profile.css';
+import { path } from "../config";
 
 export default function Profile() {
   const [user, setUser] = useState(null);
@@ -13,13 +14,13 @@ export default function Profile() {
   const [previewUrl, setPreviewUrl] = useState(null);
 
   useEffect(() => {
-    fetch('https://90175f0f47e6.ngrok-free.app/auth/me', {
+    fetch(`${path}/auth/me`, {
         method: 'GET',
         credentials: 'include',
     }).then((res) => res.json())
     .then((data) => {
         if (data.user_id) {
-            fetch(`https://90175f0f47e6.ngrok-free.app/users/user_details/${data.user_id}`, {
+            fetch(`${path}/users/user_details/${data.user_id}`, {
                 method: 'GET',
                 credentials: 'include',
             })
@@ -53,7 +54,7 @@ export default function Profile() {
 
   const handleRemoveProfilePic = async () => {
     try {
-      const response = await fetch('https://90175f0f47e6.ngrok-free.app/users/update_details', {
+      const response = await fetch(`${path}/users/update_details`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
@@ -91,7 +92,7 @@ export default function Profile() {
         const picFormData = new FormData();
         picFormData.append('file', profilePicFile);
         
-        const picResponse = await fetch('https://90175f0f47e6.ngrok-free.app/users/upload_pic', {
+        const picResponse = await fetch(`${path}/users/upload_pic`, {
           method: 'POST',
           body: picFormData,
         });
@@ -104,7 +105,7 @@ export default function Profile() {
       
       // Only update if there are changes
       if (Object.keys(updatedData).length > 0) {
-        const response = await fetch('https://90175f0f47e6.ngrok-free.app/users/update_details', {
+        const response = await fetch(`${path}/users/update_details`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           credentials: 'include',
@@ -154,7 +155,7 @@ export default function Profile() {
   }
 
   const profilePicUrl = user.profile_pic 
-    ? `https://90175f0f47e6.ngrok-free.app/users/get_profile_pic/${user.user_id}`
+    ? `${path}/users/get_profile_pic/${user.user_id}`
     : `https://ui-avatars.com/api/?name=${encodeURIComponent(user.firstname + ' ' + user.lastname)}&background=random&size=200`;
 
   return (

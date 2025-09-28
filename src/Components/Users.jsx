@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FaEdit, FaChevronLeft, FaChevronRight, FaToggleOn, FaToggleOff } from 'react-icons/fa';
 import '../styles/users.css';
+import { path } from "../config";
 
 export default function Users() {
   const [users, setUsers] = useState([]);
@@ -22,7 +23,7 @@ export default function Users() {
   const fetchUsers = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('https://90175f0f47e6.ngrok-free.app/users/user_details', {
+      const response = await axios.get(`${path}/users/user_details`, {
         withCredentials: true
       });
       setUsers(response.data);
@@ -66,7 +67,7 @@ export default function Users() {
   const handleUpdateRole = async () => {
     try {
       await axios.put(
-        `https://90175f0f47e6.ngrok-free.app/users/update_user_admin?user_id=${editingUser.user_id}`,
+        `${path}/users/update_user_admin?user_id=${editingUser.user_id}`,
         { 
           usertype: newUserType,
           status: newUserStatus
@@ -96,7 +97,7 @@ export default function Users() {
     const newStatus = user.status === 'active' ? 'inactive' : 'active';
     try {
       await axios.put(
-        `https://90175f0f47e6.ngrok-free.app/users/update_user_admin?user_id=${user.user_id}`,
+        `${path}/users/update_user_admin?user_id=${user.user_id}`,
         { 
           usertype: user.role || user.usertype || 'user',
           status: newStatus

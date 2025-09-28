@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/header.css';
 import { Link } from 'react-router-dom';
+import { path } from "../config";
 
 export default function Header({ login, user, username, handleLogout }) {
   const [userData, setUserData] = useState(null);
@@ -9,7 +10,7 @@ export default function Header({ login, user, username, handleLogout }) {
 
   useEffect(() => {
     if (login && username && user && user.user_id) {
-      fetch(`https://90175f0f47e6.ngrok-free.app/users/user_details/${user.user_id}`, {
+      fetch(`${path}/users/user_details/${user.user_id}`, {
         method: 'GET',
         credentials: 'include'
       })
@@ -18,7 +19,7 @@ export default function Header({ login, user, username, handleLogout }) {
           console.log('Profile pic filename:', data.profile_pic);
           setUserData(data);
           if (data.profile_pic) {
-            setProfilePic(`https://90175f0f47e6.ngrok-free.app/users/get_profile_pic/${data.user_id}`);
+            setProfilePic(`${path}/users/get_profile_pic/${data.user_id}`);
           } else {
             setProfilePic(null);
           }

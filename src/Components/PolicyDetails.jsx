@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 import "../styles/policydetails.css";
+import { path } from "../config";
 
 
 
@@ -14,7 +15,7 @@ export default function PolicyDetails() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch(`https://90175f0f47e6.ngrok-free.app/policies/policy_details?policy_id=${policyId}`, {
+    fetch(`${path}/policies/policy_details?policy_id=${policyId}`, {
       method: "GET",
       credentials: "include",
     })

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { FaArrowLeft, FaCar, FaCalendarAlt, FaIdCard } from 'react-icons/fa';
 import '../styles/vehicledetails.css';
+import { path } from "../config";
 
 export default function VehicleDetails() {
   const { vehicleId } = useParams();
@@ -11,7 +12,7 @@ export default function VehicleDetails() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch(`https://90175f0f47e6.ngrok-free.app/vehicles/vehicle_details/${vehicleId}`, {
+    fetch(`${path}/vehicles/vehicle_details/${vehicleId}`, {
       method: "GET",
       credentials: "include",
     })
@@ -118,7 +119,7 @@ export default function VehicleDetails() {
               <div key={side} className="image-card">
                 <h4>{side.charAt(0).toUpperCase() + side.slice(1)} View</h4>
                 <img
-                  src={`https://90175f0f47e6.ngrok-free.app/vehicles/get_vehicle_image/${vehicle.id}/${side}`}
+                  src={`${path}/vehicles/get_vehicle_image/${vehicle.id}/${side}`}
                   alt={`${side} view`}
                   className="vehicle-image"
                   onError={(e) => {

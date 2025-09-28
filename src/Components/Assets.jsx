@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import '../styles/assets.css';
+import { path } from "../config";
 
 export default function Assets() {
   const navigate = useNavigate();
@@ -20,7 +21,7 @@ export default function Assets() {
   const fetchAssets = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('https://90175f0f47e6.ngrok-free.app/insurables/assets', {
+      const response = await axios.get(`${path}/insurables/assets`, {
         withCredentials: true
       });
       if (response.data.detail != null) {

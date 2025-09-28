@@ -1,6 +1,7 @@
 import { Navigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import ContactAdministrator from './ContactAdministrator';
+import { path } from '../config';
 
 const ProtectedRoute = ({ children, login, user }) => {
   const [userStatus, setUserStatus] = useState(null);
@@ -9,7 +10,7 @@ const ProtectedRoute = ({ children, login, user }) => {
   useEffect(() => {
     if (user?.user_id) {
       setLoading(true);
-      fetch(`https://90175f0f47e6.ngrok-free.app/users/user_details/${user.user_id}`)
+      fetch(`${path}/users/user_details/${user.user_id}`)
         .then(res => res.json())
         .then(data => {
           setUserStatus(data.status);

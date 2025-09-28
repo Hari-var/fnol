@@ -5,6 +5,7 @@ import {
   FaUser, FaPhone, FaEnvelope, FaMapMarkerAlt 
 } from "react-icons/fa";
 import "../styles/policydetailsnew.css";
+import { path } from "../config";
 
 export default function PolicyDetailsNew() {
   const { policyId } = useParams();
@@ -14,7 +15,7 @@ export default function PolicyDetailsNew() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch(`https://90175f0f47e6.ngrok-free.app/policies/policy_details?policy_id=${policyId}`, {
+    fetch(`${path}/policies/policy_details?policy_id=${policyId}`, {
       method: "GET",
       credentials: "include",
     })

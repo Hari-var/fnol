@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "../styles/styles.css";
 import "../styles/policylist.css";
-import PolicyCard from "./PolicyCard";
+// import PolicyCard from "./PolicyCard";
 import { useNavigate } from "react-router-dom";
-import { FaSearch, FaPlus, FaFilter, FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { FaPlus, FaFilter, FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { path } from "../config";
 
 export default function PolicyList() {
   const [policies, setPolicy] = useState([]);
@@ -19,7 +20,7 @@ export default function PolicyList() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("https://90175f0f47e6.ngrok-free.app/policies/policy_details_all", {
+    fetch(`${path}/policies/policy_details_all`, {
       method: "GET",
       credentials: "include",
     })

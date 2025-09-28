@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { FaArrowLeft, FaFileAlt, FaCalendarAlt, FaMapMarkerAlt, FaRupeeSign, FaExclamationTriangle, FaRobot, FaUser, FaImage, FaDownload, FaTimes, FaEdit, FaCheck, FaBan, FaSave } from "react-icons/fa";
+import { FaArrowLeft, FaFileAlt, FaCalendarAlt, FaMapMarkerAlt, FaExclamationTriangle, FaRobot, FaUser, FaImage, FaDownload, FaTimes, FaEdit, FaCheck, FaBan, FaSave } from "react-icons/fa";
 import "../styles/claimdetails.css";
+import { path } from "../config";
 
 export default function ClaimDetails() {
   const { claimId } = useParams();
@@ -17,7 +18,7 @@ export default function ClaimDetails() {
 
   useEffect(() => {
     // Fetch current user
-    fetch(`https://90175f0f47e6.ngrok-free.app/auth/me`, {
+    fetch(`${path}/auth/me`, {
       credentials: 'include'
     })
       .then(response => response.json())
@@ -25,7 +26,7 @@ export default function ClaimDetails() {
       .catch(err => console.error('Failed to fetch user:', err));
 
     // Fetch claim details
-    fetch(`https://90175f0f47e6.ngrok-free.app/claims/claim_details/${claimId}`, {
+    fetch(`${path}/claims/claim_details/${claimId}`, {
       method: "GET",
       credentials: "include",
     })
@@ -88,12 +89,12 @@ export default function ClaimDetails() {
   }
 
   const handleViewImage = (imagePath) => {
-    setPopupContent({ type: 'image', url: `https://90175f0f47e6.ngrok-free.app/claims/files?path=${encodeURIComponent(imagePath)}`, title: 'Damage Image' });
+    setPopupContent({ type: 'image', url: `${path}/claims/files?path=${encodeURIComponent(imagePath)}`, title: 'Damage Image' });
     setShowPopup(true);
   };
 
   const handleViewDocument = (docPath) => {
-    setPopupContent({ type: 'document', url: `https://90175f0f47e6.ngrok-free.app/claims/files?path=${encodeURIComponent(docPath)}`, title: 'Document' });
+    setPopupContent({ type: 'document', url: `${path}/claims/files?path=${encodeURIComponent(docPath)}`, title: 'Document' });
     setShowPopup(true);
   };
 
@@ -155,7 +156,7 @@ export default function ClaimDetails() {
 
   const handleApprove = async () => {
     try {
-      const response = await fetch(`https://90175f0f47e6.ngrok-free.appclaims/claim_details/${claimId}`, {
+      const response = await fetch(`${path}claims/claim_details/${claimId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
@@ -172,7 +173,7 @@ export default function ClaimDetails() {
 
   const handleReject = async () => {
     try {
-      const response = await fetch(`https://90175f0f47e6.ngrok-free.appclaims/claim_details/${claimId}`, {
+      const response = await fetch(`${path}claims/claim_details/${claimId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
@@ -194,7 +195,7 @@ export default function ClaimDetails() {
         approvable_reason: editData.approvable_reason,
         remarks: editData.remarks
       };
-      const response = await fetch(`https://90175f0f47e6.ngrok-free.appclaims/claim_details/${claimId}`, {
+      const response = await fetch(`${path}claims/claim_details/${claimId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
@@ -370,7 +371,7 @@ export default function ClaimDetails() {
                 <div key={index} className="image-card">
                   <div className="image-preview">
                     <img 
-                      src={`https://90175f0f47e6.ngrok-free.appclaims/files?path=${encodeURIComponent(imagePath)}`}
+                      src={`${path}claims/files?path=${encodeURIComponent(imagePath)}`}
                       alt={`Damage ${index + 1}`}
                       className="damage-image-thumb"
                       onClick={() => handleViewImage(imagePath)}

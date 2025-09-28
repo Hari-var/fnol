@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaSearch, FaEye, FaPlus, FaFilter, FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { FaPlus, FaFilter, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import "../styles/claims.css";
+import { path } from "../config";
 
 export default function Claims() {
   const [claims, setClaims] = useState([]);
@@ -17,7 +18,7 @@ export default function Claims() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("https://90175f0f47e6.ngrok-free.app/claims/claim_details", {
+    fetch(`${path}/claims/claim_details`, {
       method: "GET",
       credentials: "include",
     })

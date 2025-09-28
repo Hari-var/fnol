@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/signup.css";
+import { path } from "../config";
 
 function SignUp() {
   const navigate = useNavigate();
@@ -45,7 +46,7 @@ function SignUp() {
         const picFormData = new FormData();
         picFormData.append('file', profilePicFile);
         
-        const picResponse = await fetch("https://90175f0f47e6.ngrok-free.app/users/upload_pic", {
+        const picResponse = await fetch(`${path}/users/upload_pic`, {
           method: "POST",
           body: picFormData,
         });
@@ -72,7 +73,7 @@ function SignUp() {
         status: 'active'
       };
 
-      const response = await fetch("https://90175f0f47e6.ngrok-free.app/users/input_user_details", {
+      const response = await fetch(`${path}/users/input_user_details`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -103,7 +104,7 @@ function SignUp() {
       return;
     }
     try {
-      const res = await fetch(`https://90175f0f47e6.ngrok-free.app/users/check_username/${username}`);
+      const res = await fetch(`${path}/users/check_username/${username}`);
       const data = await res.json();
       setUsernameAvailability(data.exists ? "❌ Username already taken" : "✅ Username available");
     } catch (error) {
@@ -118,7 +119,7 @@ function SignUp() {
       return;
     }
     try {
-      const res = await fetch(`https://90175f0f47e6.ngrok-free.app/users/check_email/${email}`);
+      const res = await fetch(`${path}/users/check_email/${email}`);
       const data = await res.json();
       setEmailAvailability(data.exists ? "❌ Email already exists" : "✅ Email available");
     } catch (error) {
@@ -133,7 +134,7 @@ function SignUp() {
       return;
     }
     try {
-      const res = await fetch(`https://90175f0f47e6.ngrok-free.app/users/check_phone/${phone}`);
+      const res = await fetch(`${path}/users/check_phone/${phone}`);
       const data = await res.json();
       setPhoneAvailability(data.exists ? "❌ Phone already exists" : "✅ Phone available");
     } catch (error) {
