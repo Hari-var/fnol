@@ -1,1 +1,1 @@
-export const path= "https://8124a6fa3ec3.ngrok-free.app"
+export const path= "https://dc30143902fd.ngrok-free.app"
