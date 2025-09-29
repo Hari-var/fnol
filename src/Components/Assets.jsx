@@ -22,6 +22,7 @@ export default function Assets() {
     try {
       setLoading(true);
       const response = await axios.get(`${path}/insurables/assets`, {
+        headers: {'ngrok-skip-browser-warning': '1'},
         withCredentials: true
       });
       if (response.data.detail != null) {

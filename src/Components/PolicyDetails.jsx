@@ -17,6 +17,7 @@ export default function PolicyDetails() {
   useEffect(() => {
     fetch(`${path}/policies/policy_details?policy_id=${policyId}`, {
       method: "GET",
+      headers: {'ngrok-skip-browser-warning': '1'},
       credentials: "include",
     })
       .then((response) => {

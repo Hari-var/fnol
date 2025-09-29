@@ -24,6 +24,7 @@ export default function Users() {
     try {
       setLoading(true);
       const response = await axios.get(`${path}/users/user_details`, {
+        headers: {'ngrok-skip-browser-warning': '1'},
         withCredentials: true
       });
       setUsers(response.data);
@@ -73,7 +74,9 @@ export default function Users() {
           status: newUserStatus
         },
         { 
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 
+            'ngrok-skip-browser-warning': '1',
+            'Content-Type': 'application/json' },
           withCredentials: true 
         }
       );
@@ -103,7 +106,9 @@ export default function Users() {
           status: newStatus
         },
         { 
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 
+            'ngrok-skip-browser-warning': '1',
+            'Content-Type': 'application/json' },
           withCredentials: true 
         }
       );

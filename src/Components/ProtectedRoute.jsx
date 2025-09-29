@@ -10,7 +10,9 @@ const ProtectedRoute = ({ children, login, user }) => {
   useEffect(() => {
     if (user?.user_id) {
       setLoading(true);
-      fetch(`${path}/users/user_details/${user.user_id}`)
+      fetch(`${path}/users/user_details/${user.user_id}`,{
+        headers: {'ngrok-skip-browser-warning': '1'}
+      })
         .then(res => res.json())
         .then(data => {
           setUserStatus(data.status);

@@ -16,12 +16,14 @@ export default function Profile() {
   useEffect(() => {
     fetch(`${path}/auth/me`, {
         method: 'GET',
+        headers: {'ngrok-skip-browser-warning': '1'},
         credentials: 'include',
     }).then((res) => res.json())
     .then((data) => {
         if (data.user_id) {
             fetch(`${path}/users/user_details/${data.user_id}`, {
                 method: 'GET',
+                headers: {'ngrok-skip-browser-warning': '1'},
                 credentials: 'include',
             })
             .then((response) => {
@@ -56,7 +58,9 @@ export default function Profile() {
     try {
       const response = await fetch(`${path}/users/update_details`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'ngrok-skip-browser-warning': '1',
+          'Content-Type': 'application/json' },
         credentials: 'include',
         body: JSON.stringify({ profile_pic: "" }),
       });
@@ -94,6 +98,7 @@ export default function Profile() {
         
         const picResponse = await fetch(`${path}/users/upload_pic`, {
           method: 'POST',
+          headers: {'ngrok-skip-browser-warning': '1'},
           body: picFormData,
         });
         
@@ -107,7 +112,9 @@ export default function Profile() {
       if (Object.keys(updatedData).length > 0) {
         const response = await fetch(`${path}/users/update_details`, {
           method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 
+            'ngrok-skip-browser-warning': '1',
+            'Content-Type': 'application/json' },
           credentials: 'include',
           body: JSON.stringify(updatedData),
         });

@@ -79,7 +79,9 @@ export default function VehiclePolicyForm({user}) {
       username = base + randomNum;
       
       try {
-        const response = await fetch(`${path}/users/check_username/${username}`);
+        const response = await fetch(`${path}/users/check_username/${username}`,{
+          headers: {'ngrok-skip-browser-warning': '1'}
+        });
         const data = await response.json();
         isAvailable = !data.exists;
         attempts++;
@@ -138,6 +140,7 @@ export default function VehiclePolicyForm({user}) {
   const fetchUserNames = async () => {
     try {
       const response = await axios.get(`${path}/users/user_names`, {
+        headers: {'ngrok-skip-browser-warning': '1'},
         withCredentials: true
       });
       setUserNames(response.data);
@@ -149,6 +152,7 @@ export default function VehiclePolicyForm({user}) {
   const fetchUserDetails = async (userId) => {
     try {
       const response = await axios.get(`${path}/users/user_details/${userId}`, {
+        headers: {'ngrok-skip-browser-warning': '1'},
         withCredentials: true
       });
       const userData = response.data;
@@ -194,7 +198,9 @@ export default function VehiclePolicyForm({user}) {
       return;
     }
     try {
-      const res = await fetch(`${path}/users/check_email/${email}`);
+      const res = await fetch(`${path}/users/check_email/${email}`,{
+        headers: {'ngrok-skip-browser-warning': '1'}
+      });
       const data = await res.json();
       setEmailAvailability(data.exists ? "❌ Email already exists" : "✅ Email available");
     } catch (error) {
@@ -246,7 +252,9 @@ export default function VehiclePolicyForm({user}) {
       
       const response = await fetch(`${path}/users/input_user_details`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'ngrok-skip-browser-warning': '1',
+          'Content-Type': 'application/json' },
         credentials: 'include',
         body: JSON.stringify(payload)
       });
@@ -259,7 +267,9 @@ export default function VehiclePolicyForm({user}) {
           username: newUserData.username,
           password: autoPassword,
           email: newUserData.email
-        });
+        },{
+      headers: {'ngrok-skip-browser-warning': '1'}
+      });
         
         alert('New user created successfully! Login credentials sent to email.');
         setShowNewUserPopup(false);
@@ -325,6 +335,9 @@ export default function VehiclePolicyForm({user}) {
       const response = await fetch(`${path}/llm/extract_vehicle_details?make=${formData.make}&model=${formData.model}&type=${formData.vehicle_type}&year=${formData.year_of_purchase}`, {
         method: 'POST',
         credentials: 'include',
+        headers: {
+          'ngrok-skip-browser-warning': '1'
+        },
         body: formData_llm
       });
       
@@ -382,7 +395,9 @@ export default function VehiclePolicyForm({user}) {
       // 1. Create Policy first
       const policyRes = await fetch(`${path}/policies/policy_details`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+          'ngrok-skip-browser-warning': '1',
+          "Content-Type": "application/json" },
         credentials: "include",
         body: JSON.stringify(policy_payload),
       });
@@ -401,6 +416,7 @@ export default function VehiclePolicyForm({user}) {
 
       const imgRes = await fetch(`${path}/vehicles/upload_vehicle_images?folder_name=${formData.vin}&typeofvehicle=${formData.vehicle_type}`, {
         method: "POST",
+        headers: {'ngrok-skip-browser-warning': '1'},
         credentials: "include",
         body: imgForm,
       });
@@ -433,6 +449,7 @@ export default function VehiclePolicyForm({user}) {
         credentials: "include",
         body: JSON.stringify(vehicle_payload),
         headers: {
+          'ngrok-skip-browser-warning': '1',
           "Content-Type": "application/json"
         }
       });

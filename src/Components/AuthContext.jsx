@@ -9,7 +9,9 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    axios.get(`${path}/auth/me`, { withCredentials: true })
+    axios.get(`${path}/auth/me`, { 
+      headers: {'ngrok-skip-browser-warning': '1'},
+      withCredentials: true })
       .then(res => setUser(res.data))  // { username, user_id, role }
       .catch(() => setUser(null));
   }, []);

@@ -19,6 +19,7 @@ export default function ClaimDetails() {
   useEffect(() => {
     // Fetch current user
     fetch(`${path}/auth/me`, {
+      headers: {'ngrok-skip-browser-warning': '1'},
       credentials: 'include'
     })
       .then(response => response.json())
@@ -28,6 +29,7 @@ export default function ClaimDetails() {
     // Fetch claim details
     fetch(`${path}/claims/claim_details/${claimId}`, {
       method: "GET",
+      headers: {'ngrok-skip-browser-warning': '1'},
       credentials: "include",
     })
       .then((response) => {
@@ -158,16 +160,18 @@ export default function ClaimDetails() {
     try {
       const response = await fetch(`${path}claims/claim_details/${claimId}`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'ngrok-skip-browser-warning': '1',
+          'Content-Type': 'application/json' },
         credentials: 'include',
-        body: JSON.stringify({ claim_status: 'approved' })
+        body: JSON.stringify({ claim_status: 'accepted' })
       });
       if (response.ok) {
-        setClaim(prev => ({ ...prev, claim_status: 'approved' }));
-        alert('Claim approved successfully');
+        setClaim(prev => ({ ...prev, claim_status: 'accepted' }));
+        alert('Claim accepted successfully');
       }
     } catch (err) {
-      setError('Failed to approve claim');
+      setError('Failed to accept claim');
     }
   };
 
@@ -175,7 +179,9 @@ export default function ClaimDetails() {
     try {
       const response = await fetch(`${path}claims/claim_details/${claimId}`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'ngrok-skip-browser-warning': '1',
+          'Content-Type': 'application/json' },
         credentials: 'include',
         body: JSON.stringify({ claim_status: 'rejected' })
       });
@@ -197,7 +203,9 @@ export default function ClaimDetails() {
       };
       const response = await fetch(`${path}claims/claim_details/${claimId}`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'ngrok-skip-browser-warning': '1',
+          'Content-Type': 'application/json' },
         credentials: 'include',
         body: JSON.stringify(updatePayload)
       });

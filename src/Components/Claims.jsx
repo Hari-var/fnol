@@ -20,6 +20,7 @@ export default function Claims() {
   useEffect(() => {
     fetch(`${path}/claims/claim_details`, {
       method: "GET",
+      headers: {'ngrok-skip-browser-warning': '1'},
       credentials: "include",
     })
       .then((response) => response.json())

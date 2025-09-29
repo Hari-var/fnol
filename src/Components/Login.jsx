@@ -25,7 +25,9 @@ const Login = ({ setLogin }) => {
 
     fetch(`${path}/auth/token?remember=${remember}`, {
       method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      headers: { 
+        'ngrok-skip-browser-warning': '1',
+        "Content-Type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams({
         username: username,
         password: password,

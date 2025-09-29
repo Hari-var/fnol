@@ -50,6 +50,7 @@ export default function ClaimsForm({user}) {
   const fetchUserNames = async () => {
     try {
       const response = await fetch(`${path}/users/user_names`, {
+        headers: {'ngrok-skip-browser-warning': '1'},
         credentials: 'include'
       });
       const data = await response.json();
@@ -62,6 +63,7 @@ export default function ClaimsForm({user}) {
   const fetchPolicies = async (userId) => {
     try {
       const response = await fetch(`${path}/policies/policy_numbers/${userId || 0}`, {
+        headers: {'ngrok-skip-browser-warning': '1'},
         credentials: 'include'
       });
       const data = await response.json();
@@ -74,6 +76,7 @@ export default function ClaimsForm({user}) {
   const fetchPolicyDetails = async (policyId) => {
     try {
       const response = await fetch(`${path}/policies/policy_details/${policyId}`, {
+        headers: {'ngrok-skip-browser-warning': '1'},
         credentials: 'include'
       });
       const data = await response.json();
@@ -92,6 +95,7 @@ export default function ClaimsForm({user}) {
   const fetchInsuredAssets = async (policyId) => {
     try {
       const response = await fetch(`${path}/insurables/get_id?policy_id=${policyId}`, {
+        headers: {'ngrok-skip-browser-warning': '1'},
         credentials: 'include'
       });
       const data = await response.json();
@@ -174,6 +178,7 @@ export default function ClaimsForm({user}) {
 
       const response = await fetch(`${path}/llm/claim_validation?damage_description=${encodeURIComponent(formData.damage_description_user)}&requested_amount=${formData.requested_amount}&claimable_amount=${selectedPolicy.coverage_amount}`, {
         method: 'POST',
+        headers: {'ngrok-skip-browser-warning': '1'},
         credentials: 'include',
         body: formDataLLM
       });
@@ -217,6 +222,7 @@ export default function ClaimsForm({user}) {
 
       const response = await fetch(`${path}/claims/upload_documents?folder_name=${folderName}`, {
         method: 'POST',
+        headers: {'ngrok-skip-browser-warning': '1'},
         body: formData,
         credentials: 'include'
       });
@@ -249,6 +255,7 @@ export default function ClaimsForm({user}) {
         
         const imageResponse = await fetch(`${path}/claims/upload_claim_images?folder_name=${folderName}`, {
           method: 'POST',
+          headers: {'ngrok-skip-browser-warning': '1'},
           body: imageFormData,
           credentials: 'include'
         });
@@ -288,7 +295,9 @@ export default function ClaimsForm({user}) {
 
       const response = await fetch(`${path}/claims/claim_details` , {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'ngrok-skip-browser-warning': '1',
+          'Content-Type': 'application/json' },
         credentials: 'include',
         body: JSON.stringify(claimPayload)
       });

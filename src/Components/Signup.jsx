@@ -48,6 +48,7 @@ function SignUp() {
         
         const picResponse = await fetch(`${path}/users/upload_pic`, {
           method: "POST",
+          headers: {'ngrok-skip-browser-warning': '1'},
           body: picFormData,
         });
         
@@ -75,7 +76,9 @@ function SignUp() {
 
       const response = await fetch(`${path}/users/input_user_details`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+          'ngrok-skip-browser-warning': '1',
+          "Content-Type": "application/json" },
         credentials: "include",
         body: JSON.stringify(payload),
       });
@@ -104,7 +107,9 @@ function SignUp() {
       return;
     }
     try {
-      const res = await fetch(`${path}/users/check_username/${username}`);
+      const res = await fetch(`${path}/users/check_username/${username}`,{
+        headers: {'ngrok-skip-browser-warning': '1'}
+      });
       const data = await res.json();
       setUsernameAvailability(data.exists ? "❌ Username already taken" : "✅ Username available");
     } catch (error) {
@@ -119,7 +124,9 @@ function SignUp() {
       return;
     }
     try {
-      const res = await fetch(`${path}/users/check_email/${email}`);
+      const res = await fetch(`${path}/users/check_email/${email}`,{
+        headers: {'ngrok-skip-browser-warning': '1'}
+      });
       const data = await res.json();
       setEmailAvailability(data.exists ? "❌ Email already exists" : "✅ Email available");
     } catch (error) {
@@ -134,7 +141,9 @@ function SignUp() {
       return;
     }
     try {
-      const res = await fetch(`${path}/users/check_phone/${phone}`);
+      const res = await fetch(`${path}/users/check_phone/${phone}`,{
+        headers: {'ngrok-skip-browser-warning': '1'},
+      });
       const data = await res.json();
       setPhoneAvailability(data.exists ? "❌ Phone already exists" : "✅ Phone available");
     } catch (error) {

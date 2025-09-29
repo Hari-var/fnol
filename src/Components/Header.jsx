@@ -12,6 +12,7 @@ export default function Header({ login, user, username, handleLogout }) {
     if (login && username && user && user.user_id) {
       fetch(`${path}/users/user_details/${user.user_id}`, {
         method: 'GET',
+        headers: {'ngrok-skip-browser-warning': '1'},
         credentials: 'include'
       })
         .then(res => res.json())

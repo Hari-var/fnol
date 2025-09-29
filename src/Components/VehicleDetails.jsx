@@ -14,6 +14,7 @@ export default function VehicleDetails() {
   useEffect(() => {
     fetch(`${path}/vehicles/vehicle_details/${vehicleId}`, {
       method: "GET",
+      headers: {'ngrok-skip-browser-warning': '1'},
       credentials: "include",
     })
       .then((response) => {
